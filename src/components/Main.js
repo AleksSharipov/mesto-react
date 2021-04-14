@@ -1,5 +1,5 @@
 import { PopupWithForm } from './PopupWithForm';
-export const Main = ({ onEditProfile, onAddPlace, onEditAvatar, name, avatar, description, children }) => {
+export default function Main({ onEditProfile, onAddPlace, onEditAvatar, name, avatar, description, children }) {
 
 
 

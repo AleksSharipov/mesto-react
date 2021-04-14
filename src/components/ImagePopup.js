@@ -1,4 +1,4 @@
-export const ImagePopup = ({ card, active, setActive }) => {
+export default function ImagePopup({ card, active, setActive }) {
   return (
     <section className={card ? `popup popup-show-card popup_opened` : `popup popup-show-card`} onClick={() => { setActive(false) }}>
       <div className="popup__body popup__body-card">

@@ -1,4 +1,4 @@
-export const PopupWithForm = ({ title, name, children, active, setActive }) => {
+export default function PopupWithForm({ title, name, children, active, setActive }) {
   return (
     <section className={active ? `popup popup-${name} popup_opened` : `popup popup-${name}`} onClick={() => { setActive(false) }}>
       <div className="popup__body" onClick={(e) => {

@@ -1,4 +1,4 @@
-export const Card = ({ link, name, like, handleCardClick }) => {
+export default function Card({ link, name, like, handleCardClick }) {
   return (
     <li className="element__list">
       {/* <button className="element__trash button-hover"></button> */}
