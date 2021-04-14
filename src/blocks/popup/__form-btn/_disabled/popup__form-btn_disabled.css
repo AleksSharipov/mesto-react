@@ -1,0 +1,5 @@
+.popup__form-btn_disabled {
+  pointer-events: none;
+  user-select: none;
+  opacity: .2;
+}
