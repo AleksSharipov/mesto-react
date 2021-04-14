@@ -1,0 +1,16 @@
+.profile__button_refactoring_avatar {
+  width: 24px;
+  height: 24px;
+  border: 1px solid white;
+  background-image: url(../../../../images/redacting.svg);
+}
+
+@media screen and (max-width: 719px){
+  .profile__button_refactoring_avatar {
+    margin: 0 0 0 10px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+
