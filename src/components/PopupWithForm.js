@@ -1,10 +1,10 @@
-export default function PopupWithForm({ title, name, children, active, setActive }) {
+export default function PopupWithForm({ title, name, children, isOpen, onClose }) {
   return (
-    <section className={active ? `popup popup-${name} popup_opened` : `popup popup-${name}`} onClick={() => { setActive(false) }}>
+    <section className={isOpen ? `popup popup-${name} popup_opened` : `popup popup-${name}`} onClick={onClose}>
       <div className="popup__body" onClick={(e) => {
         e.stopPropagation();
       }}>
-        <button className="popup__close button-hover" type="button" onClick={() => { setActive(false) }}></button>
+        <button className="popup__close button-hover" type="button" onClick={onClose}></button>
         <h2 className="popup__title">{title}</h2>
         <form className={`popup__form popup__form-${name}`} action="" name="popup-refactoring" noValidate>
           {children}
@@ -13,3 +13,7 @@ export default function PopupWithForm({ title, name, children, active, setActive
     </section >
   )
 }
+
+/**
+ * onClick={() => { setIsOpen(false) }
+ */
