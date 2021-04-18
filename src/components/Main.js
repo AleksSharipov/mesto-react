@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import { api } from '../utils/api';
-import ImagePopup from './ImagePopup';
 export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
   const [userName, setUserName] = useState('');
@@ -30,7 +29,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
           id: item._id,
           link: item.link,
           name: item.name,
-          like: item.likes
+          likes: item.likes
         }));
         setCards(data)
       })
@@ -65,22 +64,10 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
               key={card.id}
               {...card}
               handleCardClick={onCardClick}
-            // handleCardClick={handleCardClick(card.link)} 
             />
           })}
-          {/* handleCardClick={() => {
-              handleCardClick(card.link)
-
-            } */}
         </ul>
       </section>
     </main >
   )
 }
-
-/**
- *
-    handleEditAvatarClick
-    handleEditProfileClick
-    handleAddPlaceClick
- */

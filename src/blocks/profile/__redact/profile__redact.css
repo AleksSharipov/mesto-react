@@ -5,4 +5,5 @@
   margin-left: -120px;
   content: '';
   background: url(../../../images/redact.svg) rgba(0, 0, 0, 0.5) center no-repeat;
+  cursor: pointer;
 }

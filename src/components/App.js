@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -25,12 +25,13 @@ function App() {
     setIsEditAvatarPopupOpen(false)
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
-    setSelectedCard(false)
+    setSelectedCard({})
   }
 
   const [selectedCard, setSelectedCard] = useState({});
   const handleCardClick = (obj) => {
-    return setSelectedCard(obj.target.currentSrc)
+    return setSelectedCard(obj)
+    // return setSelectedCard(obj.target.currentSrc)
   }
 
   return (
