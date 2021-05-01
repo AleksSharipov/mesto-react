@@ -1,43 +1,73 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+// import { useEffect, useState } from 'react';
 import Card from './Card';
-import { api } from '../utils/api';
-export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
+// import { api } from '../utils/api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
+export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete }) {
 
-  useEffect(() => {
-    api.getUserInfo()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+  // const [cards, setCards] = useState([]);
+  const currentUser = React.useContext(CurrentUserContext);
+  // const [like, setLike] = useState(false);
+  // const [newCards, setNewCards] = useState([]);
 
+  // useEffect(() => {
+  //   api.getCards()
+  //     .then((res) => {
+  //       const data = res.map((item) => ({
+  //         id: item._id,
+  //         link: item.link,
+  //         name: item.name,
+  //         likes: item.likes,
+  //         owner: item.owner
+  //       }));
+  //       setCards(data)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }, [like, newCards])
 
+  // function handleCardLike(likes, id) {
+  //   const isLiked = likes.some((like) => like._id === currentUser._id);
 
-  const [cards, setCards] = useState([]);
-  useEffect(() => {
-    api.getCards()
-      .then((res) => {
-        const data = res.map((item) => ({
-          id: item._id,
-          link: item.link,
-          name: item.name,
-          likes: item.likes
-        }));
-        setCards(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+  //   if (!isLiked) {
+  //     setLike(false)
+  //     api.likeCard(id)
+  //       .then((newCard) => {
+  //         setCards((state) => state.map((c) => c._id === id ? newCard : c));
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //       .finally(() => {
+  //         setLike(true)
+  //       })
+  //   } else {
+  //     setLike(true)
+  //     api.deleteLikeCard(id)
+  //       .then((newCard) => {
+  //         setCards((state) => state.map((c) => c._id === id ? newCard : c));
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //       .finally(() => {
+  //         setLike(false)
+  //       })
+  //   }
+  // }
 
+  // function handleCardDelete(cardId) {
+  //   api.deleteCard(cardId)
+  //     .then(() => {
+  //       setNewCards(cards.filter((c) => c._id !== cardId))
+  //       setCards(newCards)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
 
 
   return (
@@ -45,25 +75,28 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
       <section className="profile">
         <div className="profile__card">
           <div className="profile__redact" onClick={onEditAvatar}>
-            <img className="profile__avatar" src={userAvatar} alt="Аватарка" />
+            <img className="profile__avatar" src={currentUser.avatar} alt="Аватарка" />
           </div>
           <div className="profile__info">
             <div className="profile__name-refactoring">
-              <h1 className="profile__title">{userName}</h1>
+              <h1 className="profile__title">{currentUser.name}</h1>
               <button className="profile__button profile__button_refactoring_avatar button-hover" type="button" onClick={onEditProfile}></button>
             </div>
-            <p className="profile__description">{userDescription}</p>
+            <p className="profile__description">{currentUser.about}</p>
           </div>
         </div>
         <button className="profile__button profile__button_add_card button-hover" type="button" onClick={onAddPlace}></button>
       </section>
       <section className="elements">
         <ul className="element">
-          {cards.map(card => {
+          {cards.map((card) => {
+            // console.log(card)
             return <Card
               key={card.id}
               {...card}
               handleCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
             />
           })}
         </ul>
