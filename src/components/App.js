@@ -37,10 +37,6 @@ function App() {
   const handleCardClick = (obj) => {
     return setSelectedCard(obj)
   }
-  // const handleCardLike = (newCard) => {
-  //   return setCards(newCard)
-  // }
-
 
   const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
@@ -87,32 +83,6 @@ function App() {
         console.log(err)
       })
   }, [])
-
-
-  // function handleCardLike(likes, id) {
-  //   console.log(likes)
-  //   const isLiked = likes.some((like) => like._id === currentUser._id);
-  //   if (!isLiked) {
-  //     api.likeCard(id)
-  //       .then((newCard) => {
-  //         // console.log(newCard)
-  //         const newCards = cards.map((c) => c._id === id ? newCard : c);
-  //         // console.log(newCards)
-  //         // setCards(newCards)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     api.deleteLikeCard(id)
-  //       .then((newCard) => {
-  //         // setCards((state) => state.map((c) => c._id === id ? newCard : c));
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
-  // }
 
   function handleCardDelete(cardId) {
     console.log(cardId)

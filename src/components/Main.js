@@ -7,32 +7,6 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
 
   const currentUser = React.useContext(CurrentUserContext);
 
-  // function handleCardLike(card) {
-  //   // console.log(likes)
-  //   // const isLiked = likes.some((like) => like._id === currentUser._id);
-  //   const isLiked = card.likes.some(i => i._id === currentUser._id);
-  //   if (!isLiked) {
-  //     api.likeCard(card._id)
-  //       .then((newCard) => {
-  //         console.log(card._id)
-  //         const newCards = cards.map((c) => c._id === card.id ? newCard : c);
-  //         // console.log(newCards)
-  //         setCards(newCards)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     api.deleteLikeCard(card.id)
-  //       .then((newCard) => {
-  //         // setCards((state) => state.map((c) => c._id === id ? newCard : c));
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
-  // }
-
   return (
     <main>
       <section className="profile">
@@ -55,10 +29,8 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
           {cards.map((card) => {
             return <Card
               key={card.id}
-              // {...card}
               card={card}
               handleCardClick={onCardClick}
-              // onCardLike={onCardLike}
               onCardDelete={onCardDelete}
               onCardLike={onCardLike}
             />
