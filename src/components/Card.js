@@ -1,15 +1,18 @@
 import React from 'react'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export default function Card({ link, name, likes, owner, id, handleCardClick, onCardLike, onCardDelete }) {
+// export default function Card({ link, name, likes, owner, id, handleCardClick, onCardLike, onCardDelete }) {
+export default function Card({ card, handleCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const isLiked = (likes.some((like) => like._id === currentUser._id));
+  const isLiked = (card.likes.some((like) => like._id === currentUser._id));
   const cardLikeButtonClassName = isLiked ? `element__like button-hover element__like_active` : `element__like button-hover`;
 
-  const isOwn = owner._id === currentUser._id;
+  const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = isOwn ? `element__trash_visible button-hover` : `element__trash_hidden`;
 
+  const link = card.link;
+  const name = card.name;
   function handleClick() {
     handleCardClick({
       link,
@@ -18,22 +21,22 @@ export default function Card({ link, name, likes, owner, id, handleCardClick, on
   }
 
   function handleLikeClick() {
-    onCardLike(likes, id)
+    onCardLike(card)
   }
 
   function handleDeleteClick() {
-    onCardDelete(id)
+    onCardDelete(card._id)
   }
 
   return (
     <li className="element__list">
       <button className={cardDeleteButtonClassName} onClick={handleDeleteClick}></button>
-      <img className="element__images" src={link} alt={name} onClick={handleClick} />
+      <img className="element__images" src={card.link} alt={card.name} onClick={handleClick} />
       <div className="element__description">
-        <h3 className="element__title">{name}</h3>
+        <h3 className="element__title">{card.name}</h3>
         <div className="element__support">
           <button className={cardLikeButtonClassName} onClick={handleLikeClick} type="button"></button>
-          <span className="element__counter">{likes.length}</span>
+          <span className="element__counter">{card.likes.length}</span>
         </div>
       </div>
     </li>

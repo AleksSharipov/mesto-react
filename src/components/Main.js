@@ -1,74 +1,37 @@
 import React from 'react';
-// import { useEffect, useState } from 'react';
 import Card from './Card';
-// import { api } from '../utils/api';
+import { api } from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete }) {
 
-  // const [cards, setCards] = useState([]);
   const currentUser = React.useContext(CurrentUserContext);
-  // const [like, setLike] = useState(false);
-  // const [newCards, setNewCards] = useState([]);
 
-  // useEffect(() => {
-  //   api.getCards()
-  //     .then((res) => {
-  //       const data = res.map((item) => ({
-  //         id: item._id,
-  //         link: item.link,
-  //         name: item.name,
-  //         likes: item.likes,
-  //         owner: item.owner
-  //       }));
-  //       setCards(data)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [like, newCards])
-
-  // function handleCardLike(likes, id) {
-  //   const isLiked = likes.some((like) => like._id === currentUser._id);
-
+  // function handleCardLike(card) {
+  //   // console.log(likes)
+  //   // const isLiked = likes.some((like) => like._id === currentUser._id);
+  //   const isLiked = card.likes.some(i => i._id === currentUser._id);
   //   if (!isLiked) {
-  //     setLike(false)
-  //     api.likeCard(id)
+  //     api.likeCard(card._id)
   //       .then((newCard) => {
-  //         setCards((state) => state.map((c) => c._id === id ? newCard : c));
+  //         console.log(card._id)
+  //         const newCards = cards.map((c) => c._id === card.id ? newCard : c);
+  //         // console.log(newCards)
+  //         setCards(newCards)
   //       })
   //       .catch((err) => {
   //         console.log(err)
-  //       })
-  //       .finally(() => {
-  //         setLike(true)
   //       })
   //   } else {
-  //     setLike(true)
-  //     api.deleteLikeCard(id)
+  //     api.deleteLikeCard(card.id)
   //       .then((newCard) => {
-  //         setCards((state) => state.map((c) => c._id === id ? newCard : c));
+  //         // setCards((state) => state.map((c) => c._id === id ? newCard : c));
   //       })
   //       .catch((err) => {
   //         console.log(err)
-  //       })
-  //       .finally(() => {
-  //         setLike(false)
   //       })
   //   }
   // }
-
-  // function handleCardDelete(cardId) {
-  //   api.deleteCard(cardId)
-  //     .then(() => {
-  //       setNewCards(cards.filter((c) => c._id !== cardId))
-  //       setCards(newCards)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
-
 
   return (
     <main>
@@ -90,13 +53,14 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
       <section className="elements">
         <ul className="element">
           {cards.map((card) => {
-            // console.log(card)
             return <Card
               key={card.id}
-              {...card}
+              // {...card}
+              card={card}
               handleCardClick={onCardClick}
-              onCardLike={onCardLike}
+              // onCardLike={onCardLike}
               onCardDelete={onCardDelete}
+              onCardLike={onCardLike}
             />
           })}
         </ul>
