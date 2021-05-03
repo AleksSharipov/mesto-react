@@ -88,7 +88,8 @@ function App() {
     console.log(cardId)
     api.deleteCard(cardId)
       .then(() => {
-        setCards(cards.filter((c) => c._id !== cardId))
+        // setCards(cards.filter((c) => c._id !== cardId))
+        setCards(prevCardsState => prevCardsState.filter(c => c._id !== cardId));
       })
       .catch((err) => {
         console.log(err)
